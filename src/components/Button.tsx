@@ -1,7 +1,21 @@
 import clsx from "clsx";
-import PropTypes from "prop-types";
+import type { ReactNode } from "react";
 
-const Button = ({ id, title, rightIcon, leftIcon, containerClass }) => {
+interface ButtonProps {
+  id: string;
+  title: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  containerClass?: string;
+}
+
+const Button = ({
+  id,
+  title,
+  leftIcon,
+  rightIcon,
+  containerClass,
+}: ButtonProps) => {
   return (
     <button
       id={id}
@@ -13,24 +27,17 @@ const Button = ({ id, title, rightIcon, leftIcon, containerClass }) => {
       {leftIcon}
 
       <span className="relative inline-flex overflow-hidden font-general text-xs uppercase">
-        <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">
+        <span className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">
           {title}
-        </div>
-        <div className="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+        </span>
+        <span className="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
           {title}
-        </div>
+        </span>
       </span>
 
       {rightIcon}
     </button>
   );
-};
-Button.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  rightIcon: PropTypes.node,
-  leftIcon: PropTypes.node,
-  containerClass: PropTypes.string,
 };
 
 export default Button;
