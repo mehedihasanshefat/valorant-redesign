@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Valorant Remastered
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Valorant Remastered**, a visually captivating and engaging web application built using **React**, **Tailwind CSS**, and **GSAP**. This project is a redesign of the Valorant website, featuring stunning animations and seamless user interactions.
 
-Currently, two official plugins are available:
+## 🎮 Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Valorant Remastered is a fan-made project showcasing a remastered version of the Valorant website. It combines modern design principles, smooth animations, and responsive layouts to deliver an immersive experience. The application highlights the world of Valorant, its gameplay, and the lore that keeps players engaged.
 
-## React Compiler
+### ⚡ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dynamic Animations**: Powered by GSAP for smooth and stunning animations.
+- **Responsive Design**: Tailwind CSS ensures the application looks great on all devices.
+- **Interactive UI**: Engaging elements with user-friendly navigation.
+- **Content-Rich Sections**:
+  - **Game Overview**: Learn about the tactical gameplay and strategies.
+  - **Agents**: Discover unique characters and their abilities.
+  - **Leaderboards**: Showcase top players.
+  - **Media and News**: Stay updated with the latest in Valorant.
+  - **Contact Us**: Easy access to support and feedback.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🖥️ Site Content
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Header Navigation
+- **Logo**
+- **Download Game**
+- **Media**
+- **News**
+- **Leaderboards**
+- **About**
+- **Contact**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Homepage Sections
+1. **Welcome to Valorant**
+   - Enter the Tactical Frontier.
+   - Master precision. Dominate strategy.
+   - *Play for Free* button.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Gameplay Overview**
+   - Tactical 5v5 shooter with unique Agents.
+   - Blend your style and experience in competitive gameplay.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. **Background and Creativity**
+   - Emphasis on creativity as a weapon.
+   - Multiple game modes: Competitive, Unranked, Deathmatch, Spike Rush.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4. **Battlefield Awaits**
+   - Maps with rich stories.
+   - Strategic gameplay opportunities.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+5. **Agents**
+   - Diverse characters with game-changing abilities.
+   - Strategy-driven gameplay.
+
+6. **Ranked Play**
+   - Prove your skills, climb ranks, and achieve Radiant status.
+
+7. **The Lore Unfolds**
+   - Immerse in the Valorant Protocol and its unfolding stories.
+
+8. **Join Valorant**
+   - Call to action: shape the future of Valorant.
+
+9. **Footer**
+   - Contact Us
+   - Copyright ©2024 Ramxcodes and Riot Games.
+
+---
+
+## 🔧 Technologies Used
+
+- **React**: For building dynamic and reusable components.
+- **Tailwind CSS**: For fast, responsive, and customizable designs.
+- **GSAP (GreenSock Animation Platform)**: For advanced, buttery-smooth animations.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Ensure you have the following installed:
+- Node.js
+- npm
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ramxcodes/valorant-remastered.git
+   cd valorant-remastered
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:5173) in your browser to view the app.
+
+---
+
+
+
+## 🎨 Design Highlights
+
+- **Hero Section**: A bold introduction to the Valorant universe with smooth text and button animations.
+- **Interactive Cards**: Hover effects for Agents and gameplay modes.
+- **Seamless Navigation**: Animated transitions between pages.
+- **Lore Section**: Parallax effects to bring the story to life.

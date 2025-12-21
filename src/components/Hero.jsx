@@ -1,5 +1,3 @@
-"use client";
-
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
@@ -10,56 +8,52 @@ import Button from "./Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TOTAL_VIDEOS = 4;
-
 const Hero = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
-  const [hasClicked, setHasClicked] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [loadedVideos, setLoadedVideos] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [hasClicked, setHasClicked] = useState(false);
 
-  // ✅ Correctly typed video ref
-  const nextVdRef = useRef<HTMLVideoElement | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadedVideos, setLoadedVideos] = useState(0);
+
+  const totalVideos = 4;
+  const nextVdRef = useRef(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
   };
 
   useEffect(() => {
-    if (loadedVideos >= TOTAL_VIDEOS - 1) {
+    if (loadedVideos === totalVideos - 1) {
       setLoading(false);
     }
   }, [loadedVideos]);
 
   const handleMiniVdClick = () => {
     setHasClicked(true);
-    setCurrentIndex((prev) => (prev % TOTAL_VIDEOS) + 1);
+
+    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
   };
 
   useGSAP(
     () => {
-      if (!hasClicked) return;
-
-      gsap.set("#next-video", { visibility: "visible" });
-
-      gsap.to("#next-video", {
-        transformOrigin: "center center",
-        scale: 1,
-        width: "100%",
-        height: "100%",
-        duration: 1,
-        ease: "power1.inOut",
-        onStart: () => {
-          nextVdRef.current?.play();
-        },
-      });
-
-      gsap.from("#current-video", {
-        transformOrigin: "center center",
-        scale: 0,
-        duration: 1.5,
-        ease: "power1.inOut",
-      });
+      if (hasClicked) {
+        gsap.set("#next-video", { visibility: "visible" });
+        gsap.to("#next-video", {
+          transformOrigin: "center center",
+          scale: 1,
+          width: "100%",
+          height: "100%",
+          duration: 1,
+          ease: "power1.inOut",
+          onStart: () => nextVdRef.current.play(),
+        });
+        gsap.from("#current-video", {
+          transformOrigin: "center center",
+          scale: 0,
+          duration: 1.5,
+          ease: "power1.inOut",
+        });
+      }
     },
     {
       dependencies: [currentIndex],
@@ -72,7 +66,6 @@ const Hero = () => {
       clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
       borderRadius: "0% 0% 40% 10%",
     });
-
     gsap.from("#video-frame", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       borderRadius: "0% 0% 0% 0%",
@@ -86,17 +79,16 @@ const Hero = () => {
     });
   });
 
-  // ✅ Typed helper
-  const getVideoSrc = (index: number): string => `/videos/hero-${index}.webm`;
+  const getVideoSrc = (index) => `videos/hero-${index}.webm`;
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {loading && (
-        <div className="flex-center absolute z-[100] h-dvh w-screen bg-violet-50">
+        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
           <div className="three-body">
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
           </div>
         </div>
       )}
@@ -109,15 +101,15 @@ const Hero = () => {
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <div
               onClick={handleMiniVdClick}
-              className="origin-center scale-50 opacity-0 transition-all duration-500 hover:scale-100 hover:opacity-100"
+              className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
             >
               <video
                 ref={nextVdRef}
-                src={getVideoSrc((currentIndex % TOTAL_VIDEOS) + 1)}
+                src={getVideoSrc((currentIndex % totalVideos) + 1)}
                 loop
                 muted
                 id="current-video"
-                className="size-64 origin-center scale-150 object-cover"
+                className="size-64 origin-center scale-150 object-cover object-center"
                 onLoadedData={handleVideoLoad}
               />
             </div>
@@ -129,16 +121,17 @@ const Hero = () => {
             loop
             muted
             id="next-video"
-            className="absolute-center invisible absolute z-20 size-64 object-cover"
+            className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
-
           <video
-            src={getVideoSrc(currentIndex === TOTAL_VIDEOS ? 1 : currentIndex)}
+            src={getVideoSrc(
+              currentIndex === totalVideos - 1 ? 1 : currentIndex
+            )}
             autoPlay
             loop
             muted
-            className="absolute left-0 top-0 size-full object-cover"
+            className="absolute left-0 top-0 size-full object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
         </div>
@@ -157,11 +150,9 @@ const Hero = () => {
               Enter the Tactical Frontier <br />
               Master Precision. Dominate Strategy.
             </p>
-
             <a
               href="https://playvalorant.com/en-gb/platform-selection/"
               target="_blank"
-              rel="noopener noreferrer"
             >
               <Button
                 id="watch-trailer"
